@@ -75,7 +75,8 @@ class ImageRecognizer:
 if __name__ == '__main__':
 
     img_reg=ImageRecognizer()
-    img_path='/Users/hanbo/Desktop/Memeois/Recommender/figures/test-meme2.jpg';
-    image_list=[]
-    image_list.append(img_path)
+    img_path='https://github.com/bluemapleman/MapleAI/blob/master/ComputerVision/Image%20Recognition/data/';
+    meme1=img_path+'test-meme1.jpg'
+    meme2=img_path+'test-meme2.jpg'
+    image_list=[meme1,meme2]
     img_reg.run_inference_on_image(image_list)
