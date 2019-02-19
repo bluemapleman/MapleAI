@@ -1,38 +1,30 @@
-# PathToAIJob
+# MapleAI
 
-# 前言
+![icon](MapleAI-Icon.jpg)
 
-因为立志于为人工智能（Artificial Intelligence，简称AI）领域的发展做贡献，于是希望能用写技术博客和大家分享的方式监督自己，保持学习新知识的良好习惯。同时，也顺便早早为后面的找工作做准备。
+Applications and study materials for artificial intelligence. Contents mainly include `machine learning` and `reinforcement learning`.
 
-希望深爱AI的小伙伴们都能共同进步，找到理想的工作，为推动AI理论的发展做出自己的一份努力，让技术造福于人类，让计算机帮我们一起探索世界的终极奥秘！
 
-# 目录
+## Contents
 
-## Blogs
 
-**核心部分**
 
-个人博客目录，主要是以Markdown形式写成的文章。
+### Reinforcement Learning
 
-可以直接在[CSDN](http://blog.csdn.net/qq_32690999?viewmode=contents)看到我写过的所有博客。
 
-欢迎大家对文章内容进行指正批评，或者提出个人建议！
+#### Games
 
-## EBooks
+- Five in a row
 
-整理了一些公开的学习资料，主要是各类电子书，基本我都自己预先了解或认真学习过，推荐给大家。
 
-## Logs
 
-对人工智能相关新闻的个人记录。
+#### Tutorials
 
-## Moocs
+- [Series: Simple Reinforcement Learning with Tensorflow](https://github.com/bluemapleman/MapleAI/tree/master/Blogs/ReinforcementLearning)
 
-整理了一些网络公开课的链接。
+Personal Chinese translation for [Arthur Juliani](https://medium.com/emergent-future/simple-reinforcement-learning-with-tensorflow-part-0-q-learning-with-tables-and-neural-networks-d195264329d0)'s tutorials of reinforcement learning.
 
-## QualificationsForJob
 
-整理国内外知名互联网公司对于AI岗位的应聘者要求。
 
 
 

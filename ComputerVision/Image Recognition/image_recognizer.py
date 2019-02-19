@@ -75,7 +75,8 @@ class ImageRecognizer:
 if __name__ == '__main__':
 
     img_reg=ImageRecognizer()
-    img_path='https://github.com/bluemapleman/MapleAI/blob/master/ComputerVision/Image%20Recognition/data/';
+    # the file path where meme images are
+    img_path=''
     meme1=img_path+'test-meme1.jpg'
     meme2=img_path+'test-meme2.jpg'
     image_list=[meme1,meme2]

@@ -1,6 +1,10 @@
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+
 本文是对Arthur Juliani在Medium平台发布的强化学习系列教程的个人中文翻译。（This article is my personal translation for the tutorial written and posted by Arthur Juliani on Medium.com。）
 
-原文地址（URL for original article）：https://medium.com/emergent-future/simple-reinforcement-learning-with-tensorflow-part-0-q-learning-with-tables-and-neural-networks-d195264329d0
+[原文链接（URL for original article)](https://medium.com/emergent-future/simple-reinforcement-learning-with-tensorflow-part-0-q-learning-with-tables-and-neural-networks-d195264329d0)
+
+**纯属自愿翻译，只为学习与分享知识。所以如果本系列教程对你有帮助，麻烦不吝在[github的项目](https://github.com/bluemapleman/MapleAI)上点个star吧！非常感谢！**
 
 ***
 
@@ -10,7 +14,7 @@
 
 我们将学习如何解决OpenAI的冰湖（FrozenLake）问题。不过我们的冰湖版本和上图呈现的图片可不太一样~
 
-作为本强化学习教程系列的第一章，我们将一同探索强化学习算法的一个大家庭———**Q-Learning算法**—。它们和后面章节**基于策略的算法（Policy-based algorithms）**（1-3 part）有些不一样。相对于用一个复杂而臃肿的深度神经网络，我们将以实现一个简单的**查阅表（lookup-table）**版本的算法为初始目标，然后再展示如何用Tensorflow框架来实现一个等价的神经网络版本的算法。考虑到我们将回归基础知识，所以本教程可以视作系列教程的第0部分。希望本教程能够帮助你理解Q-Learning的工作原理，基于此，我们将最终结合**策略梯度（Policy Gradient）**和Q-Learning来构造最先进的强化学习代理（Agents）。（如果你对**策略网络（Policy Networks）**更感兴趣，或者早就掌握了Q-Learning，你可以直接从[这里](https://medium.com/@awjuliani/super-simple-reinforcement-learning-tutorial-part-1-fd544fab149)开始。）
+作为本强化学习教程系列的第一章，我们将一同探索强化学习算法的一个大家庭——Q-Learning算法。它们和后面章节基于策略的算法（Policy-based algorithms）（1-3 part）有些不一样。相对于用一个复杂而臃肿的深度神经网络，我们将以实现一个简单的查阅表（lookup-table）版本的算法为初始目标，然后再展示如何用Tensorflow框架来实现一个等价的神经网络版本的算法。考虑到我们将回归基础知识，所以本教程可以视作系列教程的第0部分。希望本教程能够帮助你理解Q-Learning的工作原理，基于此，我们将最终结合策略梯度（Policy Gradient）和Q-Learning来构造最先进的强化学习代理（Agents）。（如果你对策略网络（Policy Networks）更感兴趣，或者早就掌握了Q-Learning，你可以直接从[这里](https://medium.com/@awjuliani/super-simple-reinforcement-learning-tutorial-part-1-fd544fab149)开始。）
 
 不像策略梯度方法那样试图学习到可以将一个**观察（Observation）**与一个**动作（action）**直接映射的函数，Q-Learning会尝试去学习给定一个**状态（State）**下，采取某个具体动作的值。虽然这两种方式最终都可以实现在给定情况下的智能行为决策，但是如何最终完成行为选择的过程是非常不一样的。你可能听说过[可以玩Atari游戏的深度Q网络（Deep Q-Networs）](http://www.nature.com/nature/journal/v518/n7540/full/nature14236.html)，而它其实本质上也就是更复杂的Q-Learning算法的实现。
 
@@ -32,7 +36,7 @@ $$Q(s,a) = r + γ(max(Q(s’,a’))$$
 这个公式的描述了一个给定状态s下，采取行动a的Q值等于当即获得的回报r加上一个折现因子y乘以能够最大化的在下一状态s'采取时能获得的最大长期回报的动作a'对应的长期回报。折现因子y允许我们决定相对于当前就可以获得的回报，未来的可能回报的相对重要性。通过这种方式，Q表会慢慢开始获得更准确的任一给定状态下，采取任意动作所对应的期望未来回报值。以下是Python版的对于Q表版本的冰湖环境解决方案的完整实现：
 
 
-```
+```python
 import gym
 import numpy as np
 
@@ -100,7 +104,8 @@ print(Q)
 $$Loss = \Sigma(Q-target - Q)^2$$
 
 以下是用Tensorflow实现简单Q网络的完整代码：
-```
+
+```python
 # Q-Network Learning
 # Q网络学习
 
@@ -198,7 +203,7 @@ print("Percent of succesful episodes: " + str(sum(rList)/num_episodes) + "%")
 # 成功的episode比例：0.352%
 ```
 
-```
+```python
 # Some statistics on network performance
 # 一些网络性能的统计量
 # We can see that the network beings to consistently reach the goal around the 750 episode mark.
@@ -210,7 +215,7 @@ plt.plot(rList)
 ![](http://tech-blog-pictures.oss-cn-beijing.aliyuncs.com/2018/强化学习/强化学习之二：Q-Learning原理及表与神经网络的实现/3.png)
 
 
-```
+```python
 # It also begins to progress through the environment for longer than chance aroudn the 750 mark as well.
 #  在750个episode之后，agent也一般需要更长的步数以到达目标。
 
@@ -222,10 +227,6 @@ plt.plot(jList)
 虽然网络学会了解决冰湖问题，但是结果表明它似乎比如Q表方法那么高效。即虽然神经网络在Q-Learning问题上提供了更高的灵活性，但它也牺牲了一定的稳定性。还有很多可能的对我们的简单Q网络进行扩展的办法，这些扩展可以让NN获得更好的性能并实现更稳定的学习过程。两种需要提到的特别技巧分别是**经验重放（Experience Replay）**和**冰冻目标网络（Freezing Target Networks）**。这些改进方式或者其它的一些技巧都是让DQN可以玩Atari游戏的关键所在，并且我们也将在后面探索这些相关知识。对于有关Q-Learning的更多理论，可以看Tambet Matiisen的[这篇博文](http://neuro.cs.ut.ee/demystifying-deep-reinforcement-learning/)，希望本教程可以帮助对实现简单Q-Learning算法的人们一些帮助！
 
 ***
-
-如果这篇博文对你有帮助，你可以考虑捐赠以支持未来更多的相关的教程、文章和实现。对任意的帮助与贡献都表示非常感激！
-
-如果你想跟进我在深度学习、人工智能、感知科学方面的工作，可以在Medium上follow我 @Arthur Juliani，或者推特@awjliani。
 
 用Tensorflow实现简单强化学习的系列教程：
 
